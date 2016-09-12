@@ -1,0 +1,68 @@
+﻿@using ServiceStation.Models
+@model Client
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Client: @Model.FirstName @Model.LastName</h4>
+    <hr />
+    <div class="row">
+        <div class="col-xs-2 text-right">
+            @Html.DisplayNameFor(client => client.DateOfBirth)
+        </div>
+        <div class="col-xs-3">
+            @Model.DateOfBirth.ToString("D")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 text-right">
+            @Html.DisplayNameFor(client => client.Address)
+        </div>
+        <div class="col-xs-3">
+            @Model.Address
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 text-right">
+            @Html.DisplayNameFor(client => client.Phone)
+        </div>
+        <div class="col-xs-3">
+            @Model.Phone
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 text-right">
+            @Html.DisplayNameFor(client => client.Email)
+        </div>
+        <div class="col-xs-3">
+            @Model.Email
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="#tab1" data-toggle="tab">Cars</a>
+    </li>
+    <li>
+        <a href="#tab2" data-toggle="tab">Orders</a>
+    </li>
+</ul>
+
+<div class="tab-content clearfix">
+    <div class="tab-pane active" id="tab1">
+        @Html.Partial("~/Views/Cars/_CarsList.cshtml", new Tuple<IEnumerable<Car>, long>(Model.Cars, Model.id))
+    </div>
+    <div class="tab-pane" id="tab2">
+        @Html.Partial("~/Views/Orders/_OrdersList.cshtml", new Tuple<IEnumerable<Order>, long, bool>(Model.Orders, Model.id, true))
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@model Tuple<IEnumerable<ServiceStation.Models.Order>, long, bool>
+
+@{ bool parentIsClientDetails = Model.Item3; }
+
+<div class="row">
+    <div class="col-sm-1 text-center">
+        @(parentIsClientDetails ? Html.ActionLink(" ", "Create", "Orders", new { clientId = Model.Item2 }, new { @class = "glyphicon glyphicon-plus"}) :
+        Html.ActionLink(" ", "Create", "Orders", new { carId = Model.Item2 }, new { @class = "glyphicon glyphicon-plus"}))
+    </div>
+    <div class="col-sm-3">
+        @Html.Label("Date")
+    </div>
+    <div class="col-sm-2">
+        @Html.Label("Amount")
+    </div>
+    <div class="col-sm-3">
+        @Html.Label("Status")
+    </div>
+    @if (Model.Item3)
+    {
+        <div class="col-sm-3">
+            @Html.Label("Car VIN")
+        </div>
+    }
+</div>
+
+<hr />
+
+@foreach (var order in Model.Item1)
+{
+    <div class="row">
+        <div class="col-sm-1 text-center">
+            @Html.ActionLink(" ", "Details", "Orders", new { id = order.id }, new { @class = "glyphicon glyphicon-info-sign" })
+            @Html.ActionLink(" ", "Edit", "Orders", new { id = order.id }, new { @class = "glyphicon glyphicon-pencil", @style = "margin: 0px 5px 0px 5px" })
+            @Html.ActionLink(" ", "Delete", "Orders", new { id = order.id }, new { @class = "glyphicon glyphicon-remove" })
+        </div>
+        <div class="col-sm-3">
+            @Html.Label("", order.Date.ToString("D"))
+        </div>
+        <div class="col-sm-2">
+            @Html.Label("", order.Amount.ToString("C"))
+        </div>
+        <div class="col-sm-3">
+            @Html.Label("", order.OrderStatus.Status)
+        </div>
+        @if (parentIsClientDetails)
+        {
+            <div class="col-sm-3">
+                <b>@Html.ActionLink(order.Car.VIN, "Details", "Cars", new { id = order.Car.id }, null)</b>
+            </div>
+        }
+    </div>
+}

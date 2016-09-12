@@ -1,0 +1,62 @@
+﻿@using ServiceStation.Models
+@model ServiceStation.Models.Car
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Car</h4>
+    <hr />
+    <div class="row">
+        <div class="col-xs-1 text-right">
+            @Html.DisplayNameFor(car => car.Make)
+        </div>
+        <div class="col-xs-3">
+            @Model.Make
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1 text-right">
+            @Html.DisplayNameFor(car => car.Model)
+        </div>
+        <div class="col-xs-3">
+            @Model.Model
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1 text-right">
+            @Html.DisplayNameFor(car => car.Year)
+        </div>
+        <div class="col-xs-3">
+            @Model.Year
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1 text-right">
+            @Html.DisplayNameFor(car => car.VIN)
+        </div>
+        <div class="col-xs-3">
+            @Model.VIN
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Details", "Clients", new { id = Model.ClientId }, null)
+</p>
+
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="#tab1" data-toggle="tab">Orders</a>
+    </li>
+</ul>
+
+<div class="tab-content clearfix">
+    <div class="tab-pane active" id="tab1">
+        @Html.Partial("~/Views/Orders/_OrdersList.cshtml", new Tuple<IEnumerable<Order>, long, bool>(Model.Orders, Model.id, false))
+    </div>
+</div>

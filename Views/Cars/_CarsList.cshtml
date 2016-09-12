@@ -1,0 +1,43 @@
+﻿@model Tuple<IEnumerable<ServiceStation.Models.Car>, long>
+
+<div class="row">
+    <div class="col-sm-1 text-center">
+        @Html.ActionLink(" ", "Create", "Cars", new { clientId = Model.Item2 }, new { @class = "glyphicon glyphicon-plus" })
+    </div>
+    <div class="col-sm-3">
+        @Html.Label("VIN")
+    </div>
+    <div class="col-sm-3">
+        @Html.Label("Make")
+    </div>
+    <div class="col-sm-3">
+        @Html.Label("Model")
+    </div>
+    <div class="col-sm-2">
+        @Html.Label("Year")
+    </div>
+</div>
+
+<hr />
+
+@foreach (var car in Model.Item1)
+{
+    <div class="row">
+        <div class="col-sm-1 text-center">
+            @Html.ActionLink(" ", "Edit", "Cars", new { id = car.id }, new { @class = "glyphicon glyphicon-pencil", @style = "margin-right: 10px" })
+            @Html.ActionLink(" ", "Delete", "Cars", new { id = car.id }, new { @class = "glyphicon glyphicon-remove"})
+        </div>
+        <div class="col-sm-3">
+            <b>@Html.ActionLink(car.VIN, "Details", "Cars", new { id = car.id }, null)</b>
+        </div>
+        <div class="col-sm-3">
+            @Html.Label("", car.Make)
+        </div>
+        <div class="col-sm-3">
+            @Html.Label("", car.Model)
+        </div>
+        <div class="col-sm-2">
+            @Html.Label("", car.Year.ToString())
+        </div>
+    </div>
+}

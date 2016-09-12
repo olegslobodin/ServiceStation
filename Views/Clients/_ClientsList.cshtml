@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ServiceStation.Models.Client>
+
+<div class="row">
+    <div class="col-sm-1 text-center">
+        @Html.ActionLink(" ", "Create", "Clients", null, new { @class = "glyphicon glyphicon-plus" })
+    </div>
+    <div class="col-sm-3">
+        @Html.Label("Client")
+    </div>
+    <div class="col-sm-3">
+        @Html.Label("Address")
+    </div>
+    <div class="col-sm-2">
+        @Html.Label("Phone")
+    </div>
+    <div class="col-sm-3">
+        @Html.Label("Email")
+    </div>
+</div>
+
+<hr />
+
+@foreach (var client in Model)
+{
+    <div class="row">
+        <div class="col-sm-1 text-center">
+            @Html.ActionLink(" ", "Edit", new { id = client.id }, new { @class = "glyphicon glyphicon-pencil", @style = "margin-right: 10px" })
+            @Html.ActionLink(" ", "Delete", new { id = client.id }, new { @class = "glyphicon glyphicon-remove" })
+        </div>
+        <div class="col-sm-3">
+            <b>@Html.ActionLink($"{client.FirstName} {client.LastName}", "Details", new { id = client.id })</b>
+        </div>
+        <div class="col-sm-3">
+            @Html.Label("", client.Address)
+        </div>
+        <div class="col-sm-2">
+            @Html.Label("", client.Phone)
+        </div>
+        <div class="col-sm-3">
+            @Html.Label("", client.Email)
+        </div>
+    </div>
+}

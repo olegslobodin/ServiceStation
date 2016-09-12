@@ -1,0 +1,49 @@
+﻿@model ServiceStation.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <div class="row">
+        <div class="col-xs-1 text-right">
+            @Html.DisplayNameFor(order => order.Date)
+        </div>
+        <div class="col-xs-3">
+            @Model.Date
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1 text-right">
+            @Html.DisplayNameFor(order => order.Amount)
+        </div>
+        <div class="col-xs-3">
+            @Model.Amount.ToString("C")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1 text-right">
+            @Html.DisplayNameFor(order => order.StatusId)
+        </div>
+        <div class="col-xs-3">
+            @Model.OrderStatus.Status
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1 text-right">
+            @Html.DisplayNameFor(order => order.CarId)
+        </div>
+        <div class="col-xs-3">
+            @Html.ActionLink(Model.Car.VIN, "Details", "Cars", new { id = Model.CarId }, null)
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Details", "Clients", new { id = Model.Car.ClientId }, null)
+</p>
